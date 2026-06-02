@@ -1,21 +1,21 @@
 public class Pedido {
 
     private double peso;
-    private String tipoFrete;
+    private FreteStrategy freteStrategy;
 
-    public Pedido(double peso, String tipoFrete) {
+    public Pedido(double peso, String freteStrategy) {
         this.peso = peso;
-        this.tipoFrete = tipoFrete;
+    }
+
+    public void setFreteStrategy(FreteStrategy freteStrategy) {
+        this.freteStrategy = freteStrategy;
     }
 
     public double calcularFrete() {
-        if (tipoFrete.equalsIgnoreCase("PAC")) {
-            return peso * 1.5 + 10.0;
-        } else if (tipoFrete.equalsIgnoreCase("SEDEX")) {
-            return peso * 3.5 + 25;
+        if (freteStrategy == null) {
+            throw new IllegalArgumentException("Seleciona um tipo de frete!");
         }
-        else {
-            throw new IllegalArgumentException("Tipo de frete invalido");
-        }
+
+        return freteStrategy.calcular(peso);
     }
 }
