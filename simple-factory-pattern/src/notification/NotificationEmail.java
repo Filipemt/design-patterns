@@ -1,8 +1,9 @@
 package notification;
 
-public class NotificationEmail {
+public class NotificationEmail implements NotificationTypeInterface{
 
-    public void enviarEmail(String mensagem) {
+    @Override
+    public void send(String mensagem) {
         System.out.println("Enviando EMAIL: " + mensagem);
     }
 }

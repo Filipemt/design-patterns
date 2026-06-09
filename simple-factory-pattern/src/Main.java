@@ -1,6 +1,4 @@
-import notification.NotificationEmail;
-import notification.NotificationSlack;
-import notification.NotificationSms;
+import notification.NotificationFactory;
 
 import java.util.Scanner;
 
@@ -14,20 +12,7 @@ public class Main {
         System.out.println("Digite a mensagem a ser enviada");
         String mensagem = scanner.nextLine();
 
-        if (notificationType.equals("SMS")) {
-            NotificationSms notificationSms = new NotificationSms();
-            notificationSms.enviarSMS(mensagem);
-        }
-
-        if (notificationType.equals("EMAIL")) {
-            NotificationEmail notificationEmail = new NotificationEmail();
-            notificationEmail.enviarEmail(mensagem);
-        }
-
-        if (notificationType.equals("SLACK")) {
-            NotificationSlack notificationSlack = new NotificationSlack();
-            notificationSlack.enviarSlack(mensagem);
-        }
-
+        NotificationFactory notificationFactory = new NotificationFactory();
+        notificationFactory.create(notificationType).send(mensagem);
     }
 }

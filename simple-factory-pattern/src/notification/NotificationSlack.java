@@ -1,8 +1,9 @@
 package notification;
 
-public class NotificationSlack {
+public class NotificationSlack implements NotificationTypeInterface{
 
-    public void enviarSlack(String mensagem) {
+    @Override
+    public void send(String mensagem) {
         System.out.println("Enviando SLACK: " + mensagem);
     }
 }

@@ -1,8 +1,9 @@
 package notification;
 
-public class NotificationSms {
+public class NotificationSms implements NotificationTypeInterface {
 
-    public void enviarSMS(String mensagem) {
+    @Override
+    public void send(String mensagem) {
         System.out.println("Enviando SMS: " + mensagem);
     }
 }
