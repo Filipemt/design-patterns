@@ -1,10 +1,9 @@
 package pagamento;
 
-public class PayPalGateway {
+public class PayPalAdapter implements ProcessadorPagamento {
 
-    private double valor;
-
-    public void cobrar(double valor, String moedaPagamento) {
+    @Override
+    public void processar(double valor) {
         System.out.println("Pagamento utilizando Pay Pal está sendo processado...");
 
         try {
@@ -14,6 +13,6 @@ public class PayPalGateway {
             System.out.println("O processamento foi interrompido.");
         }
 
-        System.out.println("Pagamento realizado com sucesso! Valor: $" + valor + moedaPagamento);
+        System.out.println("Pagamento realizado com sucesso! Valor: $" + valor + " BRL");
     }
 }

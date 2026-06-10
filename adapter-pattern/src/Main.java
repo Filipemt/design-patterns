@@ -1,5 +1,6 @@
-import pagamento.PayPalGateway;
-import pagamento.StoneGateway;
+import pagamento.PayPalAdapter;
+import pagamento.ProcessadorPagamento;
+import pagamento.StoneAdapter;
 
 import java.util.Map;
 import java.util.Scanner;
@@ -46,14 +47,21 @@ public class Main {
             );
 
             var opcaoPagamento = scanner.nextLine();
+            ProcessadorPagamento processadorPagamento = null;
             switch (opcaoPagamento) {
                 case "1":
-                    StoneGateway stoneGateway = new StoneGateway();
-                    stoneGateway.cobrar(precoProduto);
+                    processadorPagamento = new StoneAdapter();
                     break;
                 case "2":
-                    PayPalGateway payPalGateway = new PayPalGateway();
-                    payPalGateway.cobrar(precoProduto, "BRL");
+                    processadorPagamento = new PayPalAdapter();
+                    break;
+            }
+
+            if (processadorPagamento != null) {
+                processadorPagamento.processar(precoProduto);
+            }
+            else {
+                System.out.println("Opção de pagamento inválida.");
             }
         }
 

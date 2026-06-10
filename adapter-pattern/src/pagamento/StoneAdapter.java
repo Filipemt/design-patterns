@@ -1,10 +1,9 @@
 package pagamento;
 
-public class StoneGateway {
+public class StoneAdapter implements ProcessadorPagamento {
 
-    private double valor;
-
-    public void cobrar(double valor) {
+    @Override
+    public void processar(double valor) {
         System.out.println("Pagamento utilizando STONE está sendo processado...");
 
         try {
